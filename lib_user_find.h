@@ -16,19 +16,19 @@ namespace UserFind
 
 // to control threads
 inline constexpr int MAX_THREADS{8};
-static pthread_t threads[MAX_THREADS]{};
+inline pthread_t threads[MAX_THREADS];
 inline constexpr pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // to hold arguments passed to thread
 struct WrapperArgs
 {
-    char* dir;
+    const char* dir;
     const char* lookupFile;
     char** foundPath;
 };
 
 // TODO the function will create a new thread up to 8
-bool isFileInDir(char* dir, const char* lookupFile, char** foundPath);
+bool isFileInDir(const char* dir, const char* lookupFile, char** foundPath);
 
 // to be able to search with multiple threads we need a wrapper
 void* WrapperIsFileInDir(void *arg);

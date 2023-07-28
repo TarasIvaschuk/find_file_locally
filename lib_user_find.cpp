@@ -1,4 +1,4 @@
-#include "FindFileLocally.h"
+#include "lib_user_find.h"
 
 
 namespace UserFind
@@ -9,7 +9,7 @@ namespace UserFind
 void* WrapperIsFileInDir(void *arg);
 
 
-bool isFileInDir(char* dir, const char* lookupFile, char** foundPath)
+bool isFileInDir(const char* dir, const char* lookupFile, char** foundPath)
 {
 
     DIR* dp = opendir(dir);
@@ -35,7 +35,6 @@ bool isFileInDir(char* dir, const char* lookupFile, char** foundPath)
         if(strcmp(de->d_name, lookupFile) == 0)
         {
             std::cout << "File found " << de->d_name <<'\n';
-            char* result{de->d_name};
 
             // consctruct path
             strcpy(path, dir);

@@ -1,11 +1,12 @@
 
-#include "FindFileLocally.h"
+#include "lib_user_find.h"
+
 
 int main(int argc, char* argv [])
 {
     char* lookupFile = argv[1];
     char* foundPath = new char[2000];
-    char* lookupDir = "/";
+    const char* lookupDir = static_cast<const char*>("/");
 
     struct UserFind::WrapperArgs wrappedArgs;
     wrappedArgs.dir = lookupDir;
